@@ -3,10 +3,10 @@
 #║ by Fiona Morella & Ryan Canteras
 #║ rymakesgames.wordpress.com | rycanteras@gmail.com
 #║ 
-#║ Creates a visual novel-style menu for interacting with the environment
-#║ or conversing with NPCs by pulling all relevant events on the map and
-#║ listing them as window_command items. Great for people who want to map
-#║ as little as possible. And visual novels.
+#║ Creates a visual novel-style interaction menu, used to create command menus
+#║ to interect with events. Events can be separated according to interaction
+#║ type (Talk, Inspect) depending on the note tag assigned (vn_npc, vn_object).
+#║ This script is great for visual novels, text games, and the mapping-impaired.
 #║ 
 #║ • For commercial and non-commercial use. Credit greatly appreciated.
 #║
