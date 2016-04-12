@@ -18,7 +18,7 @@
 
 #╔═=══════════════════════════════════════════════════════════════════════════=#
 #║ HOW TO CALL THE MENU THROUGH EVENTS:
-#║ • Script > 'SceneManager.call(Scene_SVNMenu)'
+#║ • Script > 'SceneManager.call(Scene_VNMenu)'
 #║
 #║ HOW TO ADD EVENTS:
 #║ • To add an event under the 'Talk' category, add the comment 'npc' onto
