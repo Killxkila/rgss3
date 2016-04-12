@@ -1,4 +1,4 @@
-#╔═=══════════════════════════════════════════════════════════════════════════=#
+﻿#╔═=══════════════════════════════════════════════════════════════════════════=#
 #║ VN Interaction Menu v. 1.0 (04-13-2016)
 #║ by Fiona Morella & Ryan Canteras
 #║ rymakesgames.wordpress.com | rycanteras@gmail.com
@@ -58,7 +58,7 @@ end
 #╔═=══════════════════════════════════════════════════════════════════════════=#
 #║ Main Window - Lists all of the available primary commands.
 #╚═=═=════════════════════════════════════════════════════════════════════════=#
-class Window_VNMenu < Window_Command
+class Window_VNMenu < Window_HorzCommand
  #--------------------------------------------------------------------------
  # * Object Initialization
  #--------------------------------------------------------------------------
@@ -69,7 +69,14 @@ class Window_VNMenu < Window_Command
  # * Get Window Width
  #--------------------------------------------------------------------------
  def window_width
-   return 160
+   return Graphics.width
+ end
+ 
+ #--------------------------------------------------------------------------
+ # * Get Window Height
+ #--------------------------------------------------------------------------
+ def window_height
+   return 50
  end
  #--------------------------------------------------------------------------
  # * Update Window Position
@@ -104,6 +111,12 @@ class Window_VNTalk < Window_Command
     refresh
   end
  #--------------------------------------------------------------------------
+ # * Get Window Height
+ #--------------------------------------------------------------------------
+ def window_height
+   return Graphics.height - 50
+ end
+ #--------------------------------------------------------------------------
  # * Create NPC List
  #--------------------------------------------------------------------------  
  def make_command_list
@@ -134,6 +147,12 @@ class Window_VNInspect < Window_Command
     activate
     refresh
   end
+ #--------------------------------------------------------------------------
+ # * Get Window Height
+ #--------------------------------------------------------------------------
+ def window_height
+   return Graphics.height - 50
+ end
  #--------------------------------------------------------------------------
  # * Create Object List
  #--------------------------------------------------------------------------  
@@ -179,7 +198,7 @@ class Scene_VNMenu < Scene_MenuBase
  # * Create Talk Window
  #--------------------------------------------------------------------------
  def create_vntalk_window
-  @talk_window = Window_VNTalk.new(0,200)
+  @talk_window = Window_VNTalk.new(0,50)
   @talk_window.viewport = @viewport
   @talk_window.hide
   @talk_window.deactivate
@@ -211,7 +230,7 @@ end
  # * Create Inspect Window
  #--------------------------------------------------------------------------
  def create_vninspect_window
-  @inspect_window = Window_VNInspect.new(0,200)
+  @inspect_window = Window_VNInspect.new(0,50)
   @inspect_window.viewport = @viewport
   @inspect_window.hide
   @inspect_window.deactivate
