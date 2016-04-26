@@ -78,6 +78,12 @@ class Window_VNMenu < Window_HorzCommand
  def window_height
    return 50
  end
+  #--------------------------------------------------------------------------
+  # * Get Digit Count
+  #--------------------------------------------------------------------------
+  def col_max
+    return 5
+  end
  #--------------------------------------------------------------------------
  # * Update Window Position
  #--------------------------------------------------------------------------
@@ -89,11 +95,49 @@ class Window_VNMenu < Window_HorzCommand
  # * Create Command List
  #--------------------------------------------------------------------------
  def make_command_list
+   add_command("Move", :do_move)
    add_command("Talk", :do_talk)
    add_command("Inspect", :do_inspect)
    add_command("Load", :do_load)
    add_command("Save", :do_save)
  end
+end
+
+#╔═=══════════════════════════════════════════════════════════════════════════=#
+#║ Move Window - Lists all Area Names found on the current map. 
+#║                - Don't forget to add the comment 'vn_area' to your event!
+#╚═=═=════════════════════════════════════════════════════════════════════════=#
+class Window_VNMove < Window_Command
+ #--------------------------------------------------------------------------
+ # * Object Initialization
+ #--------------------------------------------------------------------------
+  def initialize(x,y)
+    super(x,y)
+    @data = []
+    activate
+    refresh
+  end
+ #--------------------------------------------------------------------------
+ # * Get Window Height
+ #--------------------------------------------------------------------------
+ def window_height
+   return Graphics.height - 50
+ end
+ #--------------------------------------------------------------------------
+ # * Create Object List
+ #--------------------------------------------------------------------------  
+ def make_command_list
+   $game_map.events.each do |key,event|
+     if event.note == 'vn_area'
+       add_command(event.event.name,:objinspect,true,event)
+     end
+   end
+ end
+
+  def refresh
+    create_contents
+    draw_all_items
+  end
 end
 
 #╔═=══════════════════════════════════════════════════════════════════════════=#
@@ -178,6 +222,7 @@ class Scene_VNMenu < Scene_MenuBase
   def start
    super
    create_vnmenu_window
+   create_vnmove_window
    create_vntalk_window
    create_vninspect_window
  end
@@ -187,12 +232,45 @@ class Scene_VNMenu < Scene_MenuBase
  #--------------------------------------------------------------------------
   def create_vnmenu_window
    @command_window = Window_VNMenu.new
+   @command_window.set_handler(:do_move,   method(:do_move))
    @command_window.set_handler(:do_talk,   method(:do_talk))
    @command_window.set_handler(:do_inspect,   method(:do_inspect))
    @command_window.set_handler(:do_load,   method(:do_load))
    @command_window.set_handler(:do_save,   method(:do_save))
    @command_window.set_handler(:cancel, method(:do_cancel))
  end
+
+ #--------------------------------------------------------------------------
+ # * Create Move Window
+ #--------------------------------------------------------------------------
+ def create_vnmove_window
+  @move_window = Window_VNMove.new(0,50)
+  @move_window.viewport = @viewport
+  @move_window.hide
+  @move_window.deactivate
+  @move_window.set_handler(:cancel, method(:cancel_move))
+  @move_window.set_handler(:movearea,method(:movearea))
+end
+
+ def movearea
+   return_scene 
+   @move_window.current_data[:ext].start
+   
+ end
+ 
+  def cancel_move
+  @move_window.hide
+  @move_window.unselect
+  @move_window.deactivate
+  @command_window.activate
+end
+ 
+ def do_move
+   @move_window.refresh
+   @move_window.show
+   @move_window.select(0)
+   @move_window.activate
+   end
  
  #--------------------------------------------------------------------------
  # * Create Talk Window
