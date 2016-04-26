@@ -1,5 +1,5 @@
 ﻿#╔═=══════════════════════════════════════════════════════════════════════════=#
-#║ VN Interaction Menu v. 1.0 (04-13-2016)
+#║ VN Interaction Menu v. 1.01 (04-27-2016)
 #║ by Fiona Morella & Ryan Canteras
 #║ rymakesgames.wordpress.com | rycanteras@gmail.com
 #║ 
@@ -15,15 +15,20 @@
 #║ • For inquiries, bug reports and feature suggestions, contact sabao
 #║   on the script's thread on rpgmakerweb.com or rymakesgames.wordpress.com
 #╚═=═=════════════════════════════════════════════════════════════════════════=#
-
+#╔═=══════════════════════════════════════════════════════════════════════════=#
+#║ Version History
+#║
+#║ • 1.01 (4/27/2016) - Added support for the 'Move' command.
+#╚═=═=════════════════════════════════════════════════════════════════════════=#
 #╔═=══════════════════════════════════════════════════════════════════════════=#
 #║ HOW TO CALL THE MENU THROUGH EVENTS:
 #║ • Script > 'SceneManager.call(Scene_VNMenu)'
 #║
 #║ HOW TO ADD EVENTS:
-#║ • To add an event under the 'Talk' category, add the comment 'npc' onto
-#║   the event. To add an event under the 'Investigate' category, add the
-#║   comment 'object' onto the event.
+#║ • To add an event under the 'Move' category, add the comment 'vn_area' onto
+#║   the event. To add an event under the 'Talk' category, add the comment 'vn_npc'
+#║    onto the event. To add an event under the 'Investigate' category, add the
+#║   comment 'vn_object' onto the event.
 #║
 #║ • If you want an event to disappear from the list, simply create a new page
 #║   on that event WITHOUT a comment.
