@@ -129,12 +129,12 @@ class Window_VNMove < Window_Command
    return Graphics.height - 50
  end
  #--------------------------------------------------------------------------
- # * Create Object List
+ # * Create Area List
  #--------------------------------------------------------------------------  
  def make_command_list
    $game_map.events.each do |key,event|
      if event.note == 'vn_area'
-       add_command(event.event.name,:objinspect,true,event)
+       add_command(event.event.name,:movearea,true,event)
      end
    end
  end
